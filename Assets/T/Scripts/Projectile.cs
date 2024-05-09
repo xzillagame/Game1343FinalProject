@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private LayerMask bouncyLayer;
     [SerializeField] private float verticalSpeed;   // Basic stat
     private Rigidbody2D rb;
 
@@ -37,9 +38,9 @@ public class Projectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == 6) ProjectileDestroy();  // Destroy projectile, replace number with (... layer) index
+        if(collision.gameObject.layer == 6) ProjectileDestroy();  // Delete later
 
-        if (collision.gameObject.layer == 8)    // Wall effect, replace number with (Wall layer) index
+        if (collision.gameObject.layer == bouncyLayer)    
         {
             if (isStretchable) isStretching = !isStretching;
             if (isRotate) rb.angularVelocity = -rb.angularVelocity;
