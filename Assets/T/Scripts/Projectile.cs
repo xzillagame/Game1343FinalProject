@@ -1,15 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float verticalSpeed;   // Basic stat
     private Rigidbody2D rb;
-
-    [SerializeField] private bool isChasePlayer;    // Chase option
-    [SerializeField] private float horizontalSpeed;
-    private Transform player;
 
     [SerializeField] private bool isRotate;         // Rotate option
     [SerializeField] private float rotateForce;
@@ -26,7 +20,6 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         orgScale = transform.localScale;
     }
     private void Start()
@@ -36,7 +29,6 @@ public class Projectile : MonoBehaviour
     }
     private void Update()
     {
-        if (isChasePlayer) ProjectileChasePlayer();
         if (isStretchable) ProjectileStretchAndShrink();
     }
     private void FixedUpdate()
@@ -46,11 +38,12 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.layer == 6) ProjectileDestroy();  // Destroy projectile, replace number with (... layer) index
-        if (collision.gameObject.layer == 8)
+
+        if (collision.gameObject.layer == 8)    // Wall effect, replace number with (Wall layer) index
         {
             if (isStretchable) isStretching = !isStretching;
             if (isRotate) rb.angularVelocity = -rb.angularVelocity;
-            Helper_SetVelocity(-rb.velocity.x, rb.velocity.y);  // Bouncing effect, replace number with (Wall layer) index
+            Helper_SetVelocity(-rb.velocity.x, rb.velocity.y);  
         }
     }
 
@@ -58,10 +51,6 @@ public class Projectile : MonoBehaviour
     private void ProjectileMoveVertical()
     {
         Helper_SetVelocity(rb.velocity.x, -verticalSpeed);
-    }
-    private void ProjectileChasePlayer()
-    {
-        transform.position += (transform.position.x <= player.position.x ? horizontalSpeed : -horizontalSpeed) * Vector3.right * Time.deltaTime;
     }
     private void ProjectileRotate()
     {

@@ -1,14 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.U2D;
 
 public class ProjectileSpawner : MonoBehaviour
 {
     public float spawnRate;
-    [SerializeField] private GameObject projectile;
+    [SerializeField] private GameObject[] projectileVariants;
+    [SerializeField] private Transform player;
+    [SerializeField] private bool isRandomRotation = true;
     private float spawnerWidth;
 
     private void Start()
@@ -27,47 +25,35 @@ public class ProjectileSpawner : MonoBehaviour
     }
     private void Spawner_SpawnObstacle()
     {
-        try
-        { 
-            GameObject obstacle = Instantiate(projectile, transform.position, transform.rotation);
-
-            float obstacleWidth = Helper_GetPixelWidth(obstacle);
-            float xMinRange = transform.position.x - (spawnerWidth / 2) + (obstacleWidth / 2);
-            float xMaxRange = transform.position.x + (spawnerWidth / 2) - (obstacleWidth / 2);
-            float xObstacleNewPosition = Random.Range(xMinRange, xMaxRange);
-
-            obstacle.transform.position = new Vector2(xObstacleNewPosition, obstacle.transform.position.y);
-            obstacle.SetActive(true);
-        }
-        catch
-        {
-            Debug.LogError("Error: Missing projectile from " + this.name);
-        }
+        GameObject p_variant = projectileVariants[(int)Random.Range(0, projectileVariants.Length)]; // Skin choosing
+        GameObject projectile = Instantiate(p_variant, transform.position, transform.rotation);
+        Helper_SetPositionAndRotation(projectile);
     }
 
-
-    private float Helper_GetPixelHeight(GameObject target)
+    private void Helper_SetPositionAndRotation(GameObject projectile)
     {
-        try
+        float obstacleWidth = 0;
+        if (player != null) // Special case for Missle projectile
         {
-            return target.GetComponent<SpriteRenderer>().bounds.size.y;
+            obstacleWidth = Helper_GetPixelWidth(projectile.transform.GetChild(0).gameObject);
+            projectile.GetComponent<ProjectileMissle>().SetPlayerTransform(player);
         }
-        catch
+        else
         {
-            Debug.LogError("Projectile missing Sprite Renderer component");
-            return -1;
+            obstacleWidth = Helper_GetPixelWidth(projectile);
         }
+
+        float xMinRange = transform.position.x - (spawnerWidth / 2) + (obstacleWidth / 2);
+        float xMaxRange = transform.position.x + (spawnerWidth / 2) - (obstacleWidth / 2);
+        Vector3 randPosition = new Vector3(Random.Range(xMinRange, xMaxRange), projectile.transform.position.y);
+        Vector3 randRotation = Vector3.forward * Random.Range(0, 360);
+
+        projectile.transform.position = randPosition;
+        if(isRandomRotation) projectile.transform.eulerAngles = randRotation;
     }
+    /* Beware error when not plug in Player transform for Missle Spawner */
     private float Helper_GetPixelWidth(GameObject target)
     {
-        try
-        {
-            return target.GetComponent<SpriteRenderer>().bounds.size.x;
-        }
-        catch
-        {
-            Debug.LogError("Projectile missing Sprite Renderer component");
-            return -1;
-        }
+        return target.GetComponent<SpriteRenderer>().bounds.size.x;
     }
 }

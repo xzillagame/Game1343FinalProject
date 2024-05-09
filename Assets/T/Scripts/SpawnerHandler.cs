@@ -1,27 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnerHandler : MonoBehaviour
 {
     [SerializeField] private GameObject[] spawners;
     [SerializeField] private float difficultyIncreaseDelay;
+    [SerializeField] private bool adjustSpawnRate;
     private int curDifficulty;
 
 
     private void Start()
     {
-        try
-        {
-            curDifficulty = 0;
-            InvokeRepeating("IncreaseDifficulty", difficultyIncreaseDelay, spawners.Length - 1);
-        }
-        catch
-        {
-            Debug.LogError("Error: Need to fill in Spawners List");
-        }
+        curDifficulty = 0;
+        InvokeRepeating("IncreaseDifficulty", difficultyIncreaseDelay, spawners.Length - 1);
     }
-
 
     private void IncreaseDifficulty()
     {
@@ -30,11 +21,13 @@ public class SpawnerHandler : MonoBehaviour
         {
             spawners[curDifficulty].SetActive(true);
 
-            //for (int i = 0; i < curDifficulty; i++)     // Reduce old obstacle spawn speed to introduce new obstacle
-            //{
-            //    print(i);
-            //    spawners[i].GetComponent<ProjectileSpawner>().spawnRate += 0.2f;
-            //}
+            if (adjustSpawnRate)
+            {
+                for (int i = 0; i < curDifficulty; i++)     // Reduce old obstacle spawn rate to introduce new obstacle
+                {
+                    spawners[i].GetComponent<ProjectileSpawner>().spawnRate += 0.1f;
+                }
+            }
         }
     }
 }

@@ -30,9 +30,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8212168875934212875}
-  - {fileID: 3177263880730883087}
   - {fileID: 5326783778748007562}
+  - {fileID: 3177263880730883087}
+  - {fileID: 8212168875934212875}
   - {fileID: 2560687264137073388}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50,10 +50,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawners:
   - {fileID: 427238852701587589}
-  - {fileID: 4842646563721270670}
   - {fileID: 7620371229849292713}
+  - {fileID: 4842646563721270670}
   - {fileID: 8459356913459694046}
   difficultyIncreaseDelay: 5
+  adjustSpawnRate: 0
 --- !u!1001 &3930797571409334615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -102,9 +103,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5632408411713649483, guid: 38ab531da8125144e9089307481d3292, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8482660692599309529, guid: 38ab531da8125144e9089307481d3292, type: 3}
       propertyPath: m_Name
-      value: OS_Streching Rectangle _ Projectile
+      value: Spawner_Stretch
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -129,6 +134,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5417050195042831419}
     m_Modifications:
+    - target: {fileID: 136633790105354068, guid: 617fe82614990e440873e3707b8552a1, type: 3}
+      propertyPath: spawnRate
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2231101251707630800, guid: 617fe82614990e440873e3707b8552a1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5338699758047807613, guid: 617fe82614990e440873e3707b8552a1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -171,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5657664052075569832, guid: 617fe82614990e440873e3707b8552a1, type: 3}
       propertyPath: m_Name
-      value: OS_Bouncy Rotation Rectangle_Projectile
+      value: Spawner_Laser
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -198,7 +211,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 210163085943183584, guid: 65b3f1a83605d2348a123f6b6d234871, type: 3}
       propertyPath: m_Name
-      value: OS_Chase Circle _ Projectile
+      value: Spawner_Missle
       objectReference: {fileID: 0}
     - target: {fileID: 5133454720163750726, guid: 65b3f1a83605d2348a123f6b6d234871, type: 3}
       propertyPath: m_LocalPosition.x
@@ -238,6 +251,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5133454720163750726, guid: 65b3f1a83605d2348a123f6b6d234871, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9143850252244295807, guid: 65b3f1a83605d2348a123f6b6d234871, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -303,9 +320,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4798079051203765415, guid: 54bdd7788f53ecc46baff9b6c1edf769, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8245535679884492386, guid: 54bdd7788f53ecc46baff9b6c1edf769, type: 3}
       propertyPath: m_Name
-      value: OS_Normal Cube_Projectile
+      value: Spawner_Meteor
       objectReference: {fileID: 0}
     - target: {fileID: 8245535679884492386, guid: 54bdd7788f53ecc46baff9b6c1edf769, type: 3}
       propertyPath: m_IsActive
