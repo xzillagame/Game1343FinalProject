@@ -615,6 +615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  scaleBuffSize: 3
 --- !u!1 &897111131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,6 +1114,10 @@ PrefabInstance:
     - target: {fileID: 5358003816800857151, guid: ea123f20174ecc546ad0588994c9f7c3, type: 3}
       propertyPath: m_Name
       value: Object Spawner Handler_Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358003816800857151, guid: ea123f20174ecc546ad0588994c9f7c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5417050195042831419, guid: ea123f20174ecc546ad0588994c9f7c3, type: 3}
       propertyPath: m_LocalPosition.x
