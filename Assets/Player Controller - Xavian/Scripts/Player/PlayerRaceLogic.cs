@@ -12,6 +12,8 @@ public class PlayerRaceLogic : MonoBehaviour
     [SerializeField] private Timer shrinkTimer;
     [SerializeField] private Timer defenseTimer;
 
+    [SerializeField] private float shrinkSizeDivide;
+
 
 
 
@@ -59,20 +61,16 @@ public class PlayerRaceLogic : MonoBehaviour
         shrinkTimer.UnPauseTimer();
 
         //Put in Logic for Shrinking
-
-
-
-
+        transform.localScale = Vector2.one / shrinkSizeDivide;
     }
 
     public void EndShrinkBuff() 
     {
         shrinkTimer.PauseTimer();
         shrinkTimer.ResetTimer();
+
         //Put in Logic to Reverse Shrinking
-
-
-
+        transform.localScale = Vector2.one;
     }
     #endregion
 

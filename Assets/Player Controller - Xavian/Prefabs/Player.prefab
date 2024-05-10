@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7976146661597744134}
   - component: {fileID: 156978080682872795}
   - component: {fileID: 8737241739596123011}
+  - component: {fileID: 3941107746491923207}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -222,4 +223,36 @@ MonoBehaviour:
   deathTime: 1
   hitStunTime: 1
   colliderEnableDelay: 1
+  shrinkTimer: {fileID: 0}
+  defenseTimer: {fileID: 0}
   maxSpeed: 3
+--- !u!114 &3941107746491923207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7965471772992008477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601d317d430a3fd489bc1255676c3875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeInterval: 2
+  timerPaused: 1
+  oneShot: 1
+  OnTimerComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8737241739596123011}
+        m_TargetAssemblyTypeName: PlayerRaceLogic, Assembly-CSharp
+        m_MethodName: EndShrinkBuff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

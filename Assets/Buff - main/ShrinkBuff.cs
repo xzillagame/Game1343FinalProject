@@ -6,4 +6,8 @@ public class ShrinkBuff : BuffBase
     {
         playerToApplyBuff.BeginShrinkBuff();
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(this.gameObject, 0);
+    }
 }
