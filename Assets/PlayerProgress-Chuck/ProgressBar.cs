@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using Unity.PlasticSCM.Editor.WebApi; // Required when Using UI elements.
 
 public class Progressbar : MonoBehaviour
 {
