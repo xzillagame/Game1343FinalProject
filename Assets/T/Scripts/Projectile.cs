@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -38,14 +39,14 @@ public class Projectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == bouncyLayer)    
+        if(collision.gameObject.layer == 6) ProjectileDestroy();  // Delete later
+
+        if( 1 << collision.gameObject.layer == bouncyLayer)
         {
             if (isStretchable) isStretching = !isStretching;
             if (isRotate) rb.angularVelocity = -rb.angularVelocity;
             Helper_SetVelocity(-rb.velocity.x, rb.velocity.y);  
         }
-
-        Destroy(this.gameObject);
     }
 
 
@@ -71,6 +72,11 @@ public class Projectile : MonoBehaviour
         if (isStretching && transform.localScale.x >= strechMaxScale * orgScale.x) isStretching = false;
         else if (!isStretching && transform.localScale.x < orgScale.x) isStretching = true;
     }
+    private void ProjectileDestroy()
+    {
+        Destroy(this.gameObject, 0);
+    }
+
 
     private void Helper_SetVelocity(float x, float y)
     { 
