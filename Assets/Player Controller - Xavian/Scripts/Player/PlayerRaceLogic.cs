@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class PlayerRaceLogic : MonoBehaviour
 {
+
+    [SerializeField][Range(1, 2)] private int PlayerNumber = 1;
+
     [SerializeField] private float deathTime = 1f;
     [SerializeField] private float hitStunTime = 1f;
     [SerializeField] private float colliderEnableDelay = 1f;
@@ -36,7 +39,7 @@ public class PlayerRaceLogic : MonoBehaviour
     Collider2D playerCollider;
 
 
-    public void OnWin()
+    public void OnWin(string _empty)
     {
         DisableCollider();
     }
@@ -137,11 +140,27 @@ public class PlayerRaceLogic : MonoBehaviour
 
     private IEnumerator RemoveControlTemporarilyWhenHit()
     {
-        StaticPlayerInput.PlayerInputResponse.Disable();
-        yield return new WaitForSeconds(hitStunTime);
-        StaticPlayerInput.PlayerInputResponse.Enable();
-        yield return new WaitForSeconds(colliderEnableDelay);
-        EnableCollider();
+        switch (PlayerNumber)
+        {
+            case 1:
+                StaticPlayerInput.PlayerInputResponse.MovementMap.Movement.Disable();
+                yield return new WaitForSeconds(hitStunTime);
+                StaticPlayerInput.PlayerInputResponse.Enable();
+                yield return new WaitForSeconds(colliderEnableDelay);
+                EnableCollider();
+                break;
+
+            case 2:
+                StaticPlayerInput.PlayerInputResponse.MovementMap2.Movement.Disable();
+                yield return new WaitForSeconds(hitStunTime);
+                StaticPlayerInput.PlayerInputResponse.MovementMap2.Movement.Enable();
+                yield return new WaitForSeconds(colliderEnableDelay);
+                EnableCollider();
+                break;
+
+        }
+
+
 
     }
 

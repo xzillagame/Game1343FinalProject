@@ -94,6 +94,78 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""MovementMap2"",
+            ""id"": ""f903217f-3bcc-429c-9316-558fb50ea558"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""c3abaa1e-c5fc-4e1d-b10a-bf557d14f515"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": ""NormalizeVector2"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""6adab77d-8965-4846-960f-e796de1e048f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""48057d2e-716e-41ca-9675-f9d625cd6b63"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""572aca26-0283-4aa5-a701-c32be125e298"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f3e60f85-e7de-49a3-b633-041b2cdab6a5"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""97c8c14d-ed0b-4b0b-8aab-50fac1d162bb"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -101,6 +173,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // MovementMap
         m_MovementMap = asset.FindActionMap("MovementMap", throwIfNotFound: true);
         m_MovementMap_Movement = m_MovementMap.FindAction("Movement", throwIfNotFound: true);
+        // MovementMap2
+        m_MovementMap2 = asset.FindActionMap("MovementMap2", throwIfNotFound: true);
+        m_MovementMap2_Movement = m_MovementMap2.FindAction("Movement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -204,7 +279,57 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public MovementMapActions @MovementMap => new MovementMapActions(this);
+
+    // MovementMap2
+    private readonly InputActionMap m_MovementMap2;
+    private List<IMovementMap2Actions> m_MovementMap2ActionsCallbackInterfaces = new List<IMovementMap2Actions>();
+    private readonly InputAction m_MovementMap2_Movement;
+    public struct MovementMap2Actions
+    {
+        private @PlayerInput m_Wrapper;
+        public MovementMap2Actions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movement => m_Wrapper.m_MovementMap2_Movement;
+        public InputActionMap Get() { return m_Wrapper.m_MovementMap2; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MovementMap2Actions set) { return set.Get(); }
+        public void AddCallbacks(IMovementMap2Actions instance)
+        {
+            if (instance == null || m_Wrapper.m_MovementMap2ActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MovementMap2ActionsCallbackInterfaces.Add(instance);
+            @Movement.started += instance.OnMovement;
+            @Movement.performed += instance.OnMovement;
+            @Movement.canceled += instance.OnMovement;
+        }
+
+        private void UnregisterCallbacks(IMovementMap2Actions instance)
+        {
+            @Movement.started -= instance.OnMovement;
+            @Movement.performed -= instance.OnMovement;
+            @Movement.canceled -= instance.OnMovement;
+        }
+
+        public void RemoveCallbacks(IMovementMap2Actions instance)
+        {
+            if (m_Wrapper.m_MovementMap2ActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMovementMap2Actions instance)
+        {
+            foreach (var item in m_Wrapper.m_MovementMap2ActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MovementMap2ActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MovementMap2Actions @MovementMap2 => new MovementMap2Actions(this);
     public interface IMovementMapActions
+    {
+        void OnMovement(InputAction.CallbackContext context);
+    }
+    public interface IMovementMap2Actions
     {
         void OnMovement(InputAction.CallbackContext context);
     }

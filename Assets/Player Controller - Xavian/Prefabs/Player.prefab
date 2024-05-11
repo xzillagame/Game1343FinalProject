@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa00f117d73ae4642beb494f8a96f7ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerNumber: 0
   playerSpeed: 8
 --- !u!114 &156978080682872795
 MonoBehaviour:
@@ -179,22 +180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50de48972cb78648aa7e351fe5d89a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 5
+  hp: 99999
   OnDied:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8737241739596123011}
-        m_TargetAssemblyTypeName: PlayerRaceLogic, Assembly-CSharp
-        m_MethodName: OnDeath
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnDamaged:
     m_PersistentCalls:
       m_Calls:
@@ -222,12 +211,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c044f6abeea824690bbb863c5008b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerNumber: 1
   deathTime: 1
   hitStunTime: 1
-  colliderEnableDelay: 1
+  colliderEnableDelay: 0.25
   shrinkTimer: {fileID: 3941107746491923207}
   defenseTimer: {fileID: -2171318164484358137}
   shrinkSizeDivide: 2
+  DefenseShieldPrefab: {fileID: 1467861541404430284, guid: 7e9c2ccda23c5254a91be81824eecfbc, type: 3}
   maxSpeed: 3
 --- !u!114 &3941107746491923207
 MonoBehaviour:
@@ -241,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601d317d430a3fd489bc1255676c3875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeInterval: 2
+  timeInterval: 5
   timerPaused: 1
   oneShot: 1
   OnTimerComplete:
@@ -271,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601d317d430a3fd489bc1255676c3875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeInterval: 2
+  timeInterval: 8
   timerPaused: 1
   oneShot: 1
   OnTimerComplete:
