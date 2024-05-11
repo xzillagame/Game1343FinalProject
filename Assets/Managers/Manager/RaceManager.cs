@@ -7,13 +7,17 @@ using TMPro;
 public class RaceManager : MonoBehaviour
 {
     #region Slider Variables
-    [SerializeField] private Slider playerProgress;
+    [SerializeField] private Slider player1Progress;
+    [SerializeField] private Slider player2Progress;
+
+
     [SerializeField] private float raceSpeed;
     #endregion
 
-    [SerializeField] TMP_Text winnerDisplayText;
+    //[SerializeField] TMP_Text winnerDisplayText;
 
     [SerializeField] private PlayerRaceLogic player1Values;
+    [SerializeField] private PlayerRaceLogic player2Values;
 
 
     [SerializeField] private UnityEvent OnGoalReached;
@@ -32,9 +36,10 @@ public class RaceManager : MonoBehaviour
     {
         while (goalReached == false)
         {
-            playerProgress.value = Mathf.Clamp(playerProgress.value + Time.deltaTime * raceSpeed * player1Values.CurrentSpeed, 0f, 1f);
+            Debug.Log(player1Progress.gameObject.name);
+            player1Progress.value = Mathf.Clamp(player1Progress.value + Time.deltaTime * raceSpeed * player1Values.CurrentSpeed, 0f, 1f);
 
-            if (playerProgress.value == 1f && goalReached == false)
+            if (player1Progress.value == 1f && goalReached == false)
             {
                 goalReached = true;
                 PlayerReachedGoal(player1Values);
@@ -54,8 +59,7 @@ public class RaceManager : MonoBehaviour
 
         OnGoalReached.AddListener(winningPlayer.OnWin);
 
-
-        winnerDisplayText.text = "Winner: " + winningPlayer.name + "!!!";
+        //winnerDisplayText.text = "Winner: " + winningPlayer.name + "!!!";
 
         StaticPlayerInput.PlayerInputResponse.Disable();
         Time.timeScale = 0.5f;
@@ -64,6 +68,12 @@ public class RaceManager : MonoBehaviour
     private void OnDisable()
     {
         OnGoalReached.RemoveAllListeners();
+    }
+
+
+    public void TestWin()
+    {
+        Debug.Log("Goal Reached");
     }
 
 

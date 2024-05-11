@@ -18,7 +18,7 @@ TagManager:
   - Buff
   - Shield
   - 
-  - 
+  - ProjectileDestory
   - 
   - 
   - 
@@ -39,9 +39,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3369376005
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: ships
-    uniqueID: 3369376005
+  - name: Projectiles
+    uniqueID: 60150841
     locked: 0
