@@ -171,6 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53db4d10765fc240871fd691bb1fc77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bouncyLayer:
+    serializedVersion: 2
+    m_Bits: 256
   verticalSpeed: 2
   isRotate: 1
   rotateForce: 5

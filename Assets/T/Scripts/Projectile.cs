@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -40,7 +41,7 @@ public class Projectile : MonoBehaviour
     {
         if(collision.gameObject.layer == 6) ProjectileDestroy();  // Delete later
 
-        if (collision.gameObject.layer == bouncyLayer)    
+        if( 1 << collision.gameObject.layer == bouncyLayer)
         {
             if (isStretchable) isStretching = !isStretching;
             if (isRotate) rb.angularVelocity = -rb.angularVelocity;

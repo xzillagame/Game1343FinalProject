@@ -1111,13 +1111,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 177768276}
     m_Modifications:
+    - target: {fileID: 871226956289410596, guid: ea123f20174ecc546ad0588994c9f7c3, type: 3}
+      propertyPath: adjustSpawnRate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 871226956289410596, guid: ea123f20174ecc546ad0588994c9f7c3, type: 3}
+      propertyPath: difficultyIncreaseDelay
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5358003816800857151, guid: ea123f20174ecc546ad0588994c9f7c3, type: 3}
       propertyPath: m_Name
       value: Object Spawner Handler_Player 1
       objectReference: {fileID: 0}
     - target: {fileID: 5358003816800857151, guid: ea123f20174ecc546ad0588994c9f7c3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5417050195042831419, guid: ea123f20174ecc546ad0588994c9f7c3, type: 3}
       propertyPath: m_LocalPosition.x
