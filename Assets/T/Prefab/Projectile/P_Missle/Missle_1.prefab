@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8171319060320520961}
   - component: {fileID: 3541029494179708378}
   - component: {fileID: 612226953130130419}
+  - component: {fileID: 6747231324506149078}
   m_Layer: 7
   m_Name: Missle_1
   m_TagString: Untagged
@@ -110,6 +111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53db4d10765fc240871fd691bb1fc77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bouncyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   verticalSpeed: 3
   isRotate: 0
   rotateForce: 0
@@ -130,6 +134,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseSpeed: 1
+--- !u!114 &6747231324506149078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6910469284715362403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158a7458b12fb8f47bcb7979d09d466f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
 --- !u!1 &8651215734936609151
 GameObject:
   m_ObjectHideFlags: 0
