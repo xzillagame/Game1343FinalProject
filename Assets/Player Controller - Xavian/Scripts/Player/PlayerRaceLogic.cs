@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider2D))]
 public class PlayerRaceLogic : MonoBehaviour
@@ -21,7 +22,23 @@ public class PlayerRaceLogic : MonoBehaviour
     private Shield playerShieldRef;
 
 
+    //Events
+
+    [SerializeField] private UnityEvent onShieldGained;
+    [SerializeField] private UnityEvent onShieldExpire;
+
+
+
+    [SerializeField] private UnityEvent onShrinkBuffGained;
+    [SerializeField] private UnityEvent onShrinkBuffLost;
+
+
+
+
     [SerializeField] private float maxSpeed;
+
+    public float MaxSpeed { get { return maxSpeed; } }
+
     private float currentSpeed;
     public float CurrentSpeed 
     {
@@ -39,7 +56,7 @@ public class PlayerRaceLogic : MonoBehaviour
     Collider2D playerCollider;
 
 
-    public void OnWin(string _empty)
+    public void OnWin()
     {
         DisableCollider();
     }
@@ -61,6 +78,9 @@ public class PlayerRaceLogic : MonoBehaviour
     #region Shrink Buff
     public void BeginShrinkBuff()
     {
+
+        onShrinkBuffGained?.Invoke();
+
         shrinkTimer.ResetTimer();
         shrinkTimer.UnPauseTimer();
 
@@ -70,6 +90,8 @@ public class PlayerRaceLogic : MonoBehaviour
 
     public void EndShrinkBuff() 
     {
+        onShrinkBuffLost?.Invoke();
+
         shrinkTimer.PauseTimer();
         shrinkTimer.ResetTimer();
 
@@ -81,9 +103,11 @@ public class PlayerRaceLogic : MonoBehaviour
     #region Defense Buff
     public void BeginDefenseBuff()
     {
+
+        onShieldGained?.Invoke();
+
         defenseTimer.ResetTimer();
         defenseTimer.UnPauseTimer();
-        //DisableCollider();
 
         if(playerShieldRef == null)
         {
@@ -100,11 +124,13 @@ public class PlayerRaceLogic : MonoBehaviour
 
     public void EndDefenseBuff()
     {
+
         defenseTimer.PauseTimer();
         defenseTimer.ResetTimer();
 
         if(playerShieldRef != null)
         {
+            onShieldExpire?.Invoke();
             Destroy(playerShieldRef.gameObject);
         }
 

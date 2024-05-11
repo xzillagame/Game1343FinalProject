@@ -28,7 +28,8 @@ public class RaceManager : MonoBehaviour
     private WinState raceWinState = WinState.noOne;
 
 
-    [SerializeField] private UnityEvent<string> OnGoalReached;
+    [SerializeField] private UnityEvent OnGoalReached;
+    [SerializeField] private UnityEvent<string> OnGoalEndActions;
 
     private bool goalReached = false;
 
@@ -88,6 +89,8 @@ public class RaceManager : MonoBehaviour
         StaticPlayerInput.PlayerInputResponse.Disable();
         Time.timeScale = 0.5f;
 
+        OnGoalReached?.Invoke();
+
         StartCoroutine(TimerBeforeLoadingWinScreen());
 
     }
@@ -108,7 +111,7 @@ public class RaceManager : MonoBehaviour
             sceneToLoad = "P2Wins";
         }
 
-        OnGoalReached?.Invoke(sceneToLoad);
+        OnGoalEndActions?.Invoke(sceneToLoad);
     }
 
 

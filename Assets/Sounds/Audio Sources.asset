@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a7981edd9501da4bb0cededab5b3046, type: 3}
+  m_Name: Audio Sources
+  m_EditorClassIdentifier: 
+  shieldAudioClips:
+    shieldGain: {fileID: 8300000, guid: 1d2b7f09cfc04db4592a75026d588d7c, type: 3}
+    shieldBroke: {fileID: 8300000, guid: 1e517050f2e973948a144fffaf936461, type: 3}
+    shieldFall: {fileID: 8300000, guid: 95a5f14a4e5c642468cc366413076b7b, type: 3}
+  shrinkAudioClips:
+    shrinking: {fileID: 8300000, guid: 6609a0ae9c17fd545993bae499b282db, type: 3}
+    growing: {fileID: 8300000, guid: 8f1ad429b448fe048b5d3e91d5579112, type: 3}
+  hitSFX:
+    playerHitSFX: {fileID: 8300000, guid: 5021f9e17766edb4ca1f774e42e272ea, type: 3}
