@@ -19,9 +19,9 @@ public class score : MonoBehaviour
     {
         playerScore.text = "Miles Left: "+ milesLeft.ToString();
         milesLeft -= 1;
-        /*if(milesLeft < 0)
+        if(milesLeft < 0)
         {
             SceneManager.LoadScene(sceneName);
-        }*/
+        }
     }
 }
