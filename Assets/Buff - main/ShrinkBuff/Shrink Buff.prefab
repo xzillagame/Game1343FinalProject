@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8819356109155494253}
   - component: {fileID: 6860953975883529304}
   - component: {fileID: 7131620008552746428}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shrink Buff
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,8 @@ public class PlayerRaceLogic : MonoBehaviour
 
     [SerializeField] private float shrinkSizeDivide;
 
-
+    [SerializeField] private Shield DefenseShieldPrefab;
+    private Shield playerShieldRef;
 
 
     [SerializeField] private float maxSpeed;
@@ -77,11 +78,33 @@ public class PlayerRaceLogic : MonoBehaviour
     #region Defense Buff
     public void BeginDefenseBuff()
     {
+        defenseTimer.ResetTimer();
+        defenseTimer.UnPauseTimer();
+        //DisableCollider();
+
+        if(playerShieldRef == null)
+        {
+            playerShieldRef = Instantiate(DefenseShieldPrefab, transform);
+        }
+        else
+        {
+            Destroy(playerShieldRef.gameObject);
+            playerShieldRef = Instantiate(DefenseShieldPrefab, transform);
+        }
+
 
     }
 
     public void EndDefenseBuff()
     {
+        defenseTimer.PauseTimer();
+        defenseTimer.ResetTimer();
+
+        if(playerShieldRef != null)
+        {
+            Destroy(playerShieldRef.gameObject);
+        }
+
 
     }
     #endregion

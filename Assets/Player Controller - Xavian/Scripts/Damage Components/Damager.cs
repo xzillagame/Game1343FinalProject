@@ -9,6 +9,8 @@ public class Damager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+       
+
         Damageable damaged = collision.GetComponent<Damageable>();
         if (damaged != null)
         {

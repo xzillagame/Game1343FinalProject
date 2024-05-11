@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7060521786217263012}
   - component: {fileID: 588433676691905900}
   - component: {fileID: 3494139256634440512}
+  - component: {fileID: 5465465158671210167}
   m_Layer: 7
   m_Name: Stretch_1
   m_TagString: Untagged
@@ -171,6 +172,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53db4d10765fc240871fd691bb1fc77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bouncyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   verticalSpeed: 2
   isRotate: 0
   rotateForce: 0
@@ -178,3 +182,16 @@ MonoBehaviour:
   horizontalForce: 0
   isStretchable: 1
   strechMaxScale: 3
+--- !u!114 &5465465158671210167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4377050964219798538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158a7458b12fb8f47bcb7979d09d466f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 1
